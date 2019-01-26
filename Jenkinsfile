@@ -49,14 +49,12 @@ node('misc') {
       stage('DSL: Exception Hand'){
         try {
           sh "exit 1"
-        } catch (exc) {
+        }
+        catch (exc) {
           echo "Something failed"
           throw
         }
-
       }
-
-
 
       echo "${seperator60}\n${seperator20} AWS ENV \n${seperator60}"
       stage('AWS Creds'){
