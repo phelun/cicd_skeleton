@@ -21,12 +21,28 @@ node('misc') {
         sh "ansible --version"
       }
 
-      echo "${seperator60}\n${seperator20} Inbuilt tools \n${seperator60}"
+      echo "${seperator60}\n${seperator20} AWS ENV \n${seperator60}"
       stage('AWS Creds'){
         withCredentials([usernamePassword(credentialsId: 'cicd-skeleton', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID' )]){
         sh """
            aws ec2 describe-instances --region eu-west-1
         """
         }
+      }
+
+      echo "${seperator60}\n${seperator20} Terraform Build|Wait|Destroy Instance\n${seperator60}"
+      stage('Terraform Res.'){
+        withCredentials([usernamePassword(credentialsId: 'cicd-skeleton', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID')]){
+          sh """
+             cd ./cicd_skeleton/terraform_infra/
+             terrafrom init
+             terraform plan -out=create.tfplan
+             terraform apply create.tfplan
+             sleep 45s
+             terraform destroy -force 
+          """
+
+        }
+
       }
 }
