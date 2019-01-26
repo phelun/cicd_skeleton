@@ -37,7 +37,7 @@ node('misc') {
         withCredentials([usernamePassword(credentialsId: 'cicd-skeleton', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID')]){
           sh """
              cd ./terraform_infra
-             terrafrom init
+             terraform init
              terraform plan -out=create.tfplan
              terraform apply create.tfplan
              sleep 45s
