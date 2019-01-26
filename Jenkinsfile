@@ -20,9 +20,10 @@ node('misc') {
           // Just some echoes to show the ANSI color.
           stage "\u001B[31mI'm Red\u001B[0m Now not"
       }
-      
+
       stage('Tool Versions') {
         checkout scm
+        shortCommit = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
         sh "aws --version"
         sh "terraform --version"
         sh "ansible --version"
