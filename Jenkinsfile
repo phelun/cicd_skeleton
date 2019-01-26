@@ -10,7 +10,7 @@
 
   7. - if/else statements
      - switch/case statement
-     - try/catch/finally
+     - try/catch/finally aka exception handlin
      - def
      - return
      - internel variables
@@ -41,9 +41,22 @@ node('misc') {
         if (env.BRANCH_NAME == 'develop'){
             echo "I am develop branch"
         } else {
-            echo "Xren znaet kto vui"
+            echo "Xren znaet kto vui: I am not develop " //TODO
         }
       }
+
+      echo "${seperator60}\n${seperator20} Exception Handling \n${seperator60}"
+      stage('DSL: Exception Hand'){
+        try {
+          sh "exit 1"
+        } catch (exc) {
+          echo "Something failed"
+          throw
+        }
+
+      }
+
+
 
       echo "${seperator60}\n${seperator20} AWS ENV \n${seperator60}"
       stage('AWS Creds'){
