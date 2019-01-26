@@ -15,7 +15,7 @@ def seperator20 = '\u2739' * 20
 
 node('misc') {
       echo "${seperator60}\n${seperator20} Inbuilt tools \n${seperator60}"
-      stage('Tool Versions') {
+      stage() {
         sh "aws --version"
         sh "terraform --version"
         sh "ansible --version"
