@@ -16,10 +16,11 @@ def seperator20 = '\u2739' * 20
 node('misc') {
       echo "${seperator60}\n${seperator20} Inbuilt tools \n${seperator60}"
 
-      ansiColor('xterm'){
-        echo 'something that outputs ansi colored stuff'
+      ansiColor('xterm') {
+          // Just some echoes to show the ANSI color.
+          stage "\u001B[31mI'm Red\u001B[0m Now not"
       }
-
+      
       stage('Tool Versions') {
         checkout scm
         sh "aws --version"
