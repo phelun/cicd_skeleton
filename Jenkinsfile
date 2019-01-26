@@ -7,6 +7,14 @@
   4. Custom Library Configurations
   5. Slack/email notifications
   6. Integrate with artefactory/s3 bucket
+
+  7. - if/else statements
+     - switch/case statement
+     - try/catch/finally
+     - def
+     - return
+     - internel variables
+     - properties
 */
 
 // Beautify display
@@ -15,7 +23,6 @@ def seperator20 = '\u2739' * 20
 
 node('misc') {
       echo "${seperator60}\n${seperator20} Inbuilt tools \n${seperator60}"
-
       ansiColor('xterm') {
           // Just some echoes to show the ANSI color.
           stage "\u001B[31mI'm Red\u001B[0m Now not"
@@ -23,10 +30,19 @@ node('misc') {
 
       stage('Tool Versions') {
         checkout scm
-        shortCommit = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
+
         sh "aws --version"
         sh "terraform --version"
         sh "ansible --version"
+      }
+
+      echo "${seperator60}\n${seperator20} DSL Syntaxing \n${seperator60}"
+      stage('DSL syntax'){
+        if (env.BRANCH_NAME == 'develop'){
+            echo "I am develop branch"
+        } else {
+            echo "Xren znaet kto vui"
+        }
       }
 
       echo "${seperator60}\n${seperator20} AWS ENV \n${seperator60}"
