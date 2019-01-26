@@ -36,12 +36,8 @@ node('misc') {
       stage('Terraform Res.'){
         withCredentials([usernamePassword(credentialsId: 'cicd-skeleton', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID')]){
           sh """
-             cd ./base_skeleton_jenkins/cicd_skeleton/terraform_infra
-             terrafrom init
-             terraform plan -out=create.tfplan
-             terraform apply create.tfplan
-             sleep 45s
-             terraform destroy -force
+             ls -la   
+
           """
 
         }
