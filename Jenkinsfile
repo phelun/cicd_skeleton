@@ -52,7 +52,6 @@ node('misc') {
         }
         catch (exc) {
           echo "Something failed"
-          throw
         }
       }
 
