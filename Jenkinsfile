@@ -6,7 +6,7 @@ node('misc') {
         sh "terraform --version"
         sh "ansible --version"
 
-        deletedir()
+        deleteDir()
         checkout scm
       }
 
