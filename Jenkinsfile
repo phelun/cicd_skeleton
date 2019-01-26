@@ -15,14 +15,16 @@ def seperator20 = '\u2739' * 20
 
 node('misc') {
       echo "${seperator60}\n${seperator20} Inbuilt tools \n${seperator60}"
-      ansiColor('xterm'){
-          stage('Tool Versions') {
 
-            checkout scm
-            sh "aws --version"
-            sh "terraform --version"
-            sh "ansible --version"
-          }
+      ansiColor('xterm'){
+        echo 'something that outputs ansi colored stuff'
+      }
+
+      stage('Tool Versions') {
+        checkout scm
+        sh "aws --version"
+        sh "terraform --version"
+        sh "ansible --version"
       }
 
       echo "${seperator60}\n${seperator20} AWS ENV \n${seperator60}"
