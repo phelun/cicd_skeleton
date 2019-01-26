@@ -16,6 +16,8 @@ def seperator20 = '\u2739' * 20
 node('misc') {
       echo "${seperator60}\n${seperator20} Inbuilt tools \n${seperator60}"
       stage('Tool Versions') {
+        
+        checkout scm
         sh "aws --version"
         sh "terraform --version"
         sh "ansible --version"
@@ -39,7 +41,7 @@ node('misc') {
              terraform plan -out=create.tfplan
              terraform apply create.tfplan
              sleep 45s
-             terraform destroy -force 
+             terraform destroy -force
           """
 
         }
