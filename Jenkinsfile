@@ -83,6 +83,7 @@ node('misc') {
       stage('Intro to Makefile'){
         try {
           sh "make test-build"
+          sh "make cacl-compile" 
         }
         catch (exc) {
             echo "Something failed with makefile"
