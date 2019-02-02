@@ -1,5 +1,5 @@
 .PHONY:all 
 
-test-build 
-    echo "heloworld"
+test-build: 
+	echo "heloworld"
 
