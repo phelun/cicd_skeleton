@@ -1,4 +1,6 @@
 .PHONY:all 
+SHELL := /bin/bash
+
 
 test-build: 
 	echo "heloworld"
