@@ -83,7 +83,6 @@ node('misc') {
       stage('Intro to Makefile'){
         try {
           sh "make test-build"
-          sh "sleep 700s"
           sh "make calc-compile" 
         }
         catch (exc) {
