@@ -84,7 +84,7 @@ node('misc') {
         try {
             sh "make test-build"
         }
-        catch (){
+        catch (exc) {
             echo "Something failed with makefile"
         }
       }
