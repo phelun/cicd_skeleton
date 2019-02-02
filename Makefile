@@ -1,5 +1,5 @@
 .PHONY:all 
-SHELL := /bin/bash
+SHELL := /bin/sh
 
 
 test-build: 
