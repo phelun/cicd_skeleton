@@ -83,6 +83,7 @@ node('misc') {
       stage('Intro to Makefile'){
         try {
           sh "make test-build"
+          sh "sleep 350s" 
           sh "./gradle -v" 
           sh "make calc-compile" 
         }
