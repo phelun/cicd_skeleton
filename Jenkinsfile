@@ -82,7 +82,7 @@ node('misc') {
       echo "${seperator60}\n${seperator20} Makefile Introduced \n${seperator60}"
       stage('Intro to Makefile'){
         //try {
-        make test-build
+        sh "make test-build"
         //}
         //catch (exc) {
         //    echo "Something failed with makefile"
