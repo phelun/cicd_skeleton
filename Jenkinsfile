@@ -52,6 +52,7 @@ node('misc') {
         catch (exc) {
             echo "Something failed with makefile"
         }
+        check_tools_ver()
       }
 }
 
