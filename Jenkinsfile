@@ -27,13 +27,6 @@ import groovy.json.JsonSlurper
 def seperator60 = '\u2739' * 60
 def seperator20 = '\u2739' * 20
 
-def check_tools_ver() {
-    stage('Checking Tools version'){
-        sh "aws --version"
-        sh "terraform --version"
-        sh "ansible --version"
-    }
-}
 
 node('misc') {
       echo "${seperator60}\n${seperator20} Inbuilt tools \n${seperator60}"
@@ -45,24 +38,10 @@ node('misc') {
           check_branch() 
       }
     
-      echo "${seperator60}\n${seperator20} Exception Handling \n${seperator60}"
-      stage('DSL: Exception Hand'){
-        try {
-          sh "exit 1"
-        }
-        catch (exc) {
-          echo "Something failed"
-        }
-      }
 
       echo "${seperator60}\n${seperator20} AWS ENV \n${seperator60}"
-      stage('AWS Creds'){
-        withCredentials([usernamePassword(credentialsId: 'cicd-skeleton', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID' )]){
-        sh """
-           aws ec2 describe-instances --region eu-west-1
-        """
-        }
-      }
+      check_aws_connection() 
+
 
       // echo "${seperator60}\n${seperator20} Terraform Build|Wait|Destroy Instance\n${seperator60}"
       // stage('Terraform Res.'){
@@ -90,6 +69,26 @@ node('misc') {
         }
       }
 }
+
+def check_aws_connection() {
+    stage('AWS Creds'){
+      withCredentials([usernamePassword(credentialsId: 'cicd-skeleton', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID' )]){
+        sh """
+           aws ec2 describe-instances --region eu-west-1
+        """
+      }
+    }
+}
+
+
+def check_tools_ver() {
+    stage('Checking Tools version'){
+        sh "aws --version"
+        sh "terraform --version"
+        sh "ansible --version"
+    }
+}
+
 
 def check_branch() {
       stage('DSL syntax'){
