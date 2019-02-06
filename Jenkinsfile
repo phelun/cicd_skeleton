@@ -42,19 +42,9 @@ node('misc') {
           stage "\u001B[31mI'm Red\u001B[0m Now not"
           checkout scm 
           check_tools_ver() 
+          chekc_branch() 
       }
     
-      
-    
-      echo "${seperator60}\n${seperator20} DSL Syntaxing \n${seperator60}"
-      stage('DSL syntax'){
-        if (env.BRANCH_NAME == 'develop'){
-            echo "I am develop branch"
-        } else {
-            echo "Xren znaet kto vui: I am not develop " //TODO
-        }
-      }
-
       echo "${seperator60}\n${seperator20} Exception Handling \n${seperator60}"
       stage('DSL: Exception Hand'){
         try {
@@ -97,6 +87,17 @@ node('misc') {
         }
         catch (exc) {
             echo "Something failed with makefile"
+        }
+      }
+}
+
+def check_branch() {
+      echo "${seperator60}\n${seperator20} DSL Syntaxing \n${seperator60}"
+      stage('DSL syntax'){
+        if (env.BRANCH_NAME == 'develop'){
+            echo "I am develop branch"
+        } else {
+            echo "Xren znaet kto vui: I am not develop " //TODO
         }
       }
 }
