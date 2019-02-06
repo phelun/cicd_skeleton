@@ -35,4 +35,10 @@ All works on develop..
         - set master to 	# of executors = 0 # THis will avoid jobs from running on master node
     - Finally for each job you create, you will need to specify which labels to use
         - Restrict where this project can be run = LABEL_NAME
-    - 
+    -
+
+3. Configure AWS credentials
+https://support.cloudbees.com/hc/en-us/articles/203802500-Injecting-Secrets-into-Jenkins-Build-Jobs
+
+4. Jenkins Best practices 
+https://www.cloudbees.com/blog/top-10-best-practices-jenkins-pipeline-plugin
