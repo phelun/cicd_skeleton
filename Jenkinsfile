@@ -92,7 +92,6 @@ node('misc') {
 }
 
 def check_branch() {
-      echo "${seperator60}\n${seperator20} DSL Syntaxing \n${seperator60}"
       stage('DSL syntax'){
         if (env.BRANCH_NAME == 'develop'){
             echo "I am develop branch"
