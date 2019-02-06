@@ -42,7 +42,7 @@ node('misc') {
           stage "\u001B[31mI'm Red\u001B[0m Now not"
           checkout scm 
           check_tools_ver() 
-          chekc_branch() 
+          check_branch() 
       }
     
       echo "${seperator60}\n${seperator20} Exception Handling \n${seperator60}"
