@@ -15,27 +15,37 @@
      - return
      - internel variables
      - properties
+
+  8. Taking concept from this guy https://gist.github.com/jonico/e205b16cf07451b2f475543cf1541e70
 */
+
+// Import some library 
+import groovy.json.JsonOutput
+import groovy.json.JsonSlurper 
 
 // Beautify display
 def seperator60 = '\u2739' * 60
 def seperator20 = '\u2739' * 20
+
+def check_tools_ver() {
+    stage('Checking Tools version'){
+        sh "aws --version"
+        sh "terraform --version"
+        sh "ansible --version"
+    }
+}
 
 node('misc') {
       echo "${seperator60}\n${seperator20} Inbuilt tools \n${seperator60}"
       ansiColor('xterm') {
           // Just some echoes to show the ANSI color.
           stage "\u001B[31mI'm Red\u001B[0m Now not"
+          checkout scm 
+          check_tools_ver() 
       }
-
-      stage('Tool Versions') {
-        checkout scm
-
-        sh "aws --version"
-        sh "terraform --version"
-        sh "ansible --version"
-      }
-
+    
+      
+    
       echo "${seperator60}\n${seperator20} DSL Syntaxing \n${seperator60}"
       stage('DSL syntax'){
         if (env.BRANCH_NAME == 'develop'){
