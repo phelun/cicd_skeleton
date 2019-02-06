@@ -70,7 +70,8 @@ node('misc') {
       }
 }
 
-def check_aws_connection() {
+
+def checik_aws_connection() {
     stage('AWS Creds'){
       withCredentials([usernamePassword(credentialsId: 'cicd-skeleton', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID' )]){
         sh """
