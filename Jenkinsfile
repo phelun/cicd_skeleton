@@ -9,7 +9,7 @@
   6. Integrate with artefactory/s3 bucket
   7. USing github source branch plugin to scan your repo/project on github/bitbucket
 
-  7. - if/else statements
+  8. - if/else statements
      - switch/case statement
      - try/catch/finally aka exception handlin
      - def
@@ -17,7 +17,8 @@
      - internel variables
      - properties
 
-  8. Taking concept from this guy https://gist.github.com/jonico/e205b16cf07451b2f475543cf1541e70
+  9. Taking concept from this guy https://gist.github.com/jonico/e205b16cf07451b2f475543cf1541e70
+  10. cicd
 */
 
 // Import some library 
