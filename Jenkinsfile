@@ -7,6 +7,7 @@
   4. Custom Library Configurations
   5. Slack/email notifications
   6. Integrate with artefactory/s3 bucket
+  7. USing github source branch plugin to scan your repo/project on github/bitbucket
 
   7. - if/else statements
      - switch/case statement
