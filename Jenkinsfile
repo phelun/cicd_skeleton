@@ -46,16 +46,16 @@ node('misc') {
 
 
       echo "${seperator60}\n${seperator20} Makefile Introduced \n${seperator60}"
-      stage('Intro to Makefile'){
-        try {
-          sh "make test-build"
-          sh "make calc-compile" 
-        }
-        catch (exc) {
-            echo "Something failed with makefile"
-        }
-        check_tools_ver()
-      }
+      //stage('Intro to Makefile'){
+      //  try {
+      //    sh "make test-build"
+      //    sh "make calc-compile" 
+      //  }
+      //  catch (exc) {
+      //      echo "Something failed with makefile"
+      //  }
+      //  check_tools_ver()
+      //}
 }
 
 // CUSTOM DSL METHODS 
@@ -75,6 +75,8 @@ def check_tools_ver() {
         sh "aws --version"
         sh "terraform --version"
         sh "ansible --version"
+        sh "kubectl version"
+        sh "helm version" 
     }
 }
 
