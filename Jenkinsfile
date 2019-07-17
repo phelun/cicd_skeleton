@@ -75,7 +75,7 @@ def check_tools_ver() {
         sh "terraform --version"
         sh "ansible --version"
         sh "kubectl version"
-        sh "helm version"
+        sh "helm version -c" 
 
     }
 }
