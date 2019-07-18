@@ -58,7 +58,7 @@ node('misc') {
 }
 
 // CUSTOM DSL METHODS 
-def setup_k8s_kube {
+def setup_k8s_kube() {
     stage('Prep k8s'){
       withCredentials([usernamePassword(credentialsId: 'cicd-skeleton', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID' )]){
         sh """
