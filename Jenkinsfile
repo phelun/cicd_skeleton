@@ -42,7 +42,7 @@ node('misc') {
 
       echo "${seperator60}\n${seperator20} AWS ENV \n${seperator60}"
       check_aws_connection() 
-
+      setup_k8s_kube()
 
       echo "${seperator60}\n${seperator20} Makefile Introduced \n${seperator60}"
       //stage('Intro to Makefile'){
@@ -58,6 +58,19 @@ node('misc') {
 }
 
 // CUSTOM DSL METHODS 
+def setup_k8s_kube {
+    stage('Prep k8s'){
+      withCredentials([usernamePassword(credentialsId: 'cicd-skeleton', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID' )]){
+        sh """
+           aws eks describe-cluster fmbah01 --region eu-west-1
+           aws sts get-caller-identity
+           aws eks update-kubeconfig --name fmbah01 --region eu-west-1
+           kubectl get nodes 
+        """
+      }    
+    }
+}
+
 def check_aws_connection() {
     stage('AWS Creds'){
       withCredentials([usernamePassword(credentialsId: 'cicd-skeleton', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID' )]){
@@ -92,18 +105,4 @@ def check_branch() {
       }
 }
 
-      // echo "${seperator60}\n${seperator20} Terraform Build|Wait|Destroy Instance\n${seperator60}"
-      // stage('Terraform Res.'){
-      //   withCredentials([usernamePassword(credentialsId: 'cicd-skeleton', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID')]){
-      //     sh """
-      //        cd ./terraform_infra
-      //        terraform init
-      //        terraform plan -out=create.tfplan
-      //        terraform apply create.tfplan
-      //        sleep 45s
-      //        terraform destroy -force
-      //     """
-      //   }
-      //
-      // }
  
