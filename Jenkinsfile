@@ -62,7 +62,6 @@ def setup_k8s_kube() {
     stage('Prep k8s'){
       withCredentials([usernamePassword(credentialsId: 'cicd-skeleton', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID' )]){
         sh """
-           aws eks describe-cluster fmbah01 --region eu-west-1
            aws sts get-caller-identity
            aws eks update-kubeconfig --name fmbah01 --region eu-west-1
            kubectl get nodes 
