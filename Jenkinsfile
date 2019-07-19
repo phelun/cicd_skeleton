@@ -65,12 +65,14 @@ def setup_k8s_kube() {
            aws sts get-caller-identity
            aws eks update-kubeconfig --name fmbah01 --region eu-west-1
            kubectl get nodes 
+           kubectl get ns 
            helm init 
-           helm verson
+           helm version
            kubectl create serviceaccount --namespace kube-system tiller
            kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
            kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'
            helm init --service-account tiller --upgrade
+           helm version 
         """
       }    
     }
