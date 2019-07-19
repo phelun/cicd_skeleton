@@ -41,7 +41,6 @@ node('misc') {
     
 
       echo "${seperator60}\n${seperator20} AWS ENV \n${seperator60}"
-      check_aws_connection() 
       setup_k8s_kube()
 
       echo "${seperator60}\n${seperator20} Makefile Introduced \n${seperator60}"
@@ -62,12 +61,14 @@ def setup_k8s_kube() {
     stage('Prep k8s'){
       withCredentials([usernamePassword(credentialsId: 'cicd-skeleton', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID' )]){
         sh """
+           ls -l
            aws sts get-caller-identity
            aws eks update-kubeconfig --name fmbah01 --region eu-west-1
            kubectl get nodes 
            kubectl get ns 
            helm init 
            helm version
+           helm ls 
 
            # kubectl create serviceaccount --namespace kube-system tiller
            # kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
