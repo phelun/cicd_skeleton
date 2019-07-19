@@ -69,6 +69,7 @@ def setup_k8s_kube() {
            helm init 
            helm version
            helm ls 
+           helm install helm/wordpress 
 
            # kubectl create serviceaccount --namespace kube-system tiller
            # kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
