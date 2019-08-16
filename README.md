@@ -1,6 +1,4 @@
-Jenkins features and example structures
-
-All works on develop..
+## Setup Jenkins cluster with containers  
 
 1. Setup Jenkins cluster
   - Spin up jenkins master container from your local home machine
@@ -42,3 +40,20 @@ https://support.cloudbees.com/hc/en-us/articles/203802500-Injecting-Secrets-into
 
 4. Jenkins Best practices 
 https://www.cloudbees.com/blog/top-10-best-practices-jenkins-pipeline-plugin
+
+
+## Build image from container
+Aim: 
+    - The steps is used for creating a jenkins container, that will be able to build and image from itself. 
+    - This will allow us use the jenkins container for build pipeline and deploypipline.
+    - Using label to tell build jobs to use the master container as build 
+    - https://getintodevops.com/blog/the-simple-way-to-run-docker-in-docker-for-ci will help you with the steps 
+
+```
+apt-get update 
+apt-get -y install apt-transport-https ca-certificates curl gnupg2 software-properties-common 
+curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg > /tmp/dkey; apt-key add /tmp/dkey 
+add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") $(lsb_release -cs) stable" 
+apt-get update 
+apt-get -y install docker-ce
+```
