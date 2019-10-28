@@ -19,6 +19,10 @@
         sudo systemctl daemon-reload
         sudo systemctl restart docker
   - GUI Configurations(Always problematic)
+    - Navigate to configure system 
+    - Scroll down to bottom of the page, CLOUD section
+    - Add a docker cloud 
+    - Fill in with below steps
     - Docker Host URI = tcp://172.17.0.1:4243
       Enabled = tick this box
     - Add Docker Template (You can have multilpe of this)
